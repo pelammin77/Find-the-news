@@ -57,8 +57,8 @@ text3 = 'Putin meets Trump'
 text4 = 'Trump meets Putin'
 text5 = 'Trump is Russian spy'
 
-vector1 = text_to_vector(text3)
-vector2 = text_to_vector(text4)
+vector1 = text_to_vector(text1)
+vector2 = text_to_vector(text2)
 
 cosine = get_cos(vector1, vector2)
 
