@@ -1,14 +1,10 @@
 from nltk.tokenize import sent_tokenize, word_tokenize
+import nltk
 from nltk.corpus import stopwords
 from nltk.corpus import wordnet
 from collections import defaultdict
 from string import punctuation
 from heapq import nlargest
-import feedparser
-import bs4 as bs
-from newspaper import Article
-import re, math
-from collections import Counter
 
 
 
@@ -38,12 +34,13 @@ class Summarizer:
         return freq
 
     def _summarize(self, text, n):
-
         text = text.strip()
         sents = sent_tokenize(text)
         assert n <= len(sents)
-        print(len(sents))
-        print(sents)
+        self.count_of_sens = len(sents)
+        self.first_sen = sents[0]
+       # print(len(sents))
+       # print(sents)
         word_sent = [word_tokenize(s.lower()) for s in sents]
         #print(word_sent.most_common(15))
         self._freq = self._compute_words(word_sent)
@@ -53,7 +50,6 @@ class Summarizer:
                 if w in self._freq:
                     ranking[i] += self._freq[w]
         sents_idx = self._rank(ranking, n)
-
         return [sents[j] for j in sents_idx]
 
     def _rank(self, ranking, n):

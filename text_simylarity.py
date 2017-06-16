@@ -13,6 +13,14 @@ import nltk
 
 WRD = re.compile(r'\w+')
 
+def compare_texts(t1, t2):
+    vector1 = text_to_vector(t1)
+    vector2 = text_to_vector(t2)
+    cosine = get_cos(vector1, vector2)
+    return cosine
+    #print('cosine', cosine)
+
+
 # calculates two vectors similarity (cosine similarity)
 def get_cos(vect1, vect2):
     inter = set(vect1.keys())& set(vect2.keys())
@@ -48,7 +56,7 @@ def search_text(key_text, seach_line):
         print("Text not found")
 
 
-
+"""
 # Test/main
 text1 = "White House communications director quits"
 text2 = 'White House communications director Mike Dubke is leaving the administration, ' \
@@ -57,14 +65,13 @@ text3 = 'Putin meets Trump'
 text4 = 'Trump meets Putin'
 text5 = 'Trump is Russian spy'
 
-vector1 = text_to_vector(text1)
-vector2 = text_to_vector(text2)
-
-cosine = get_cos(vector1, vector2)
+#res = compare_texts(text1, text2)
+#print("Text simularity is %", res*100)
 
 
 
 
-print('cosine', cosine)
-get_tags(text1)
-get_tags(text2)
+
+#get_tags(text1)
+#get_tags(text2)
+"""
