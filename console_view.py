@@ -14,8 +14,24 @@ HUFF_POST = 'http://www.huffingtonpost.com/feeds/index.xml'
 CNBC = 'http://www.cnbc.com/id/100003114/device/rss/rss.html'
 # ---------------------------------------------------------------------------
 
+feeds = [
+                'http://rss.cnn.com/rss/edition.rss',
+                'http://feeds.bbci.co.uk/news/rss.xml',
+                'http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml',
+                'http://www.goodnewsnetwork.org/feed/',
+                'http://feeds.washingtonpost.com/rss/politics',
+                'http://feeds.foxnews.com/foxnews/latest',
+                'http://www.huffingtonpost.com/feeds/index.xml',
+                'http://www.cnbc.com/id/100003114/device/rss/rss.html'
+        ]
+
+
 
 class View:
+    def __init__(self):
+        self.all_news_titles = []
+
+
     def show_main_menu(self):
         print('''Availble news feeds:
         
@@ -59,7 +75,7 @@ class View:
     def conn_to_feed(self, site_id):
         self.feed = Feed(site_id)
 
-    def get_all_posts(self):
+    def print_all_posts(self):
         print("All posts:\n")
         arr = self.feed.get_all_posts()
         i = 1
@@ -77,51 +93,74 @@ class View:
 
 
     def fetch_post(self, post_id):
-
-        #self.feed = Feed(site_id)
+        # self.feed = Feed(site_id)
         self.feed.get_article(post_id - 1)
-        #self.feed.get_article(0)
         self.feed.make_summary()
+        self.find_sim_post()
+
+    def get_all_news(self):
+        self.all_news_titles = []
+        for i in feeds:
+            self.conn_to_feed(i)
+            print(i)
+            arr = self.feed.get_all_posts()
+            for p in arr:
+                print(p)
+            #self.all_news_titles.append(self.feed.get_all_posts())
+        print(len(self.all_news_titles))
+
+
+
+    def find_sim_post(self):
+        input("\nPress any key"">")
+        print("Samanlaisia artikkeleja")
+        self.get_all_news()
+
+        input("\nPress any key"">")
+
+
+
+
 
     def cnn(self):
-        print("You picked CNN")
+        # print("You picked CNN")
         self.conn_to_feed(CNN)
-        self.get_all_posts()
+        self.print_all_posts()
 
     def bbc(self):
-        print("You pocked BBC")
+        # print("You pocked BBC")
         self.conn_to_feed(BBC)
-        self.get_all_posts()
+        self.print_all_posts()
 
     def ny_times(self):
-        print("You picked NY Times")
+        # print("You picked NY Times")
         self.conn_to_feed(NY_TIMES)
-        self.get_all_posts()
+        self.print_all_posts()
 
     def wsh_times(self):
-        print("You picked WSH Post")
+        # print("You picked WSH Post")
         self.conn_to_feed(WSHG_POST)
-        self.get_all_posts()
+        self.print_all_posts()
 
     def fox_news(self):
-        print("You picked Fox News")
+        # print("You picked Fox News")
         self.conn_to_feed(FOX_NEWS)
-        self.get_all_posts()
+        self.print_all_posts()
 
     def huff_post(self):
-        print("You picked Huff post")
+        # print("You picked Huff post")
         self.conn_to_feed(HUFF_POST)
-        self.get_all_posts()
+        self.print_all_posts()
 
     def cnbc(self):
-        print("You picked CNBC")
+        # print("You picked CNBC")
         self.conn_to_feed(CNBC)
-        self.get_all_posts()
+        self.print_all_posts()
 
     def good_news(self):
-        print("You picked Good News.com")
+        # print("You picked Good News.com")
         self.conn_to_feed(GOOD_NEWS)
-        self.get_all_posts()
+        self.print_all_posts()
 
     # define the function blocks
 

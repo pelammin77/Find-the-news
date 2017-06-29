@@ -21,7 +21,7 @@ class Parser:
             if res == True:
               print(post.link)
 
-    def get_all_news_links(self):
+    def get_all_news_links_from_feed(self):
         posts_arr = self.__feeds.entries
         return posts_arr
        # for post in self.__feeds.entries:

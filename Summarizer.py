@@ -33,14 +33,21 @@ class Summarizer:
                 del freq[w]
         return freq
 
+    def getSentsLen(self, text):
+        sen = sent_tokenize(text)
+        return len(sen)
+
+
     def _summarize(self, text, n):
         text = text.strip()
         sents = sent_tokenize(text)
+        print("Lauseita", len(sents))
+        if len(sents)< 2:
+            return ''
+
         assert n <= len(sents)
         self.count_of_sens = len(sents)
         self.first_sen = sents[0]
-       # print(len(sents))
-       # print(sents)
         word_sent = [word_tokenize(s.lower()) for s in sents]
         #print(word_sent.most_common(15))
         self._freq = self._compute_words(word_sent)

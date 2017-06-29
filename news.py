@@ -10,7 +10,7 @@ from find_ent import find_ent
 def main():
     #print("Persons:",find_ent("Singers Tom Jones and Serj Tankian "))
     view = Console()
-    while(True):
+    while True:
         view.show_main_menu()
 if __name__ == '__main__':
     main()

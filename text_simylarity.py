@@ -6,7 +6,8 @@ author: Petri Lamminaho
 
 """
 
-import re, math
+import re
+import math
 from collections import Counter
 import nltk
 
@@ -56,22 +57,27 @@ def search_text(key_text, seach_line):
         print("Text not found")
 
 
-"""
+
 # Test/main
+"""
 text1 = "White House communications director quits"
 text2 = 'White House communications director Mike Dubke is leaving the administration, ' \
         'he said Tuesday, amid swirling speculation about a possible Trump staff shakeup.'
 text3 = 'Putin meets Trump'
 text4 = 'Trump meets Putin'
 text5 = 'Trump is Russian spy'
+text6 = "Supreme Court allows limited version of Trump’s travel ban to take effect and will consider case in fall"
+text7 = "Supreme Court to Hear Travel Ban Case"
+text8 = "supreme court  travel ban"
+text9 = 'Travel Ban Supreme Court'
 
-#res = compare_texts(text1, text2)
-#print("Text simularity is %", res*100)
-
+res = compare_texts(text9.lower(), text6.lower())
+print("Text simularity is", res*100,'%')
+"""
 
 
 
 
 #get_tags(text1)
 #get_tags(text2)
-"""
+
